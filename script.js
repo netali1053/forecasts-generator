@@ -9,6 +9,14 @@ function getRandomValue(min, max) {
     return randomValue;
 }
 
+function makeTemplate(predictionText, probability) {
+    const myNewForecast = forecastItem.content.cloneNode(true);
+    myNewForecast.querySelector('h3').textContent = predictionText;
+    myNewForecast.querySelector('p').textContent = `Вероятность: ` + probability + `%`;
+
+    return myNewForecast;
+}
+
 forecastButton.addEventListener('click', function() {
     const randomNumber = getRandomValue(1, 6);
     let predictionText = "";
@@ -29,14 +37,6 @@ forecastButton.addEventListener('click', function() {
 
     forecastMessages.textContent = predictionText;
     forecastPercent.textContent = `Вероятность: ` + probability + `%`;
-
-    function makeTemplate(predictionText, probability) {
-        const myNewForecast = forecastItem.content.cloneNode(true);
-        myNewForecast.querySelector('h3').textContent = predictionText;
-        myNewForecast.querySelector('p').textContent = `Вероятность: ` + probability + `%`;
-
-        return myNewForecast;
-    }
 
     const listItem = makeTemplate(predictionText, probability);
 
